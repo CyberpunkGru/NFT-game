@@ -21,4 +21,32 @@ contract StandardToken is ERC20, ERC223 {
         _totalSupply = totalSupply;
         balances[msg.sender] = totalSupply;
     }
+
+    function name()
+        public
+        view
+        returns (string memory) {
+        return _name;
+    }
+
+    function symbol()
+        public
+        view
+        returns (string memory) {
+        return _symbol;
+    }
+
+    function decimals()
+        public
+        view
+        returns (uint8) {
+        return _decimals;
+    }
+
+    function totalSupply()
+        public
+        view
+        returns (uint256) {
+        return _totalSupply;
+    }
 }
