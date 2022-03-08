@@ -49,7 +49,7 @@ contract StandardToken is ERC20, ERC223 {
         returns (uint256) {
         return _totalSupply;
     }
-    
+
     function transfer(address _to, uint256 _value) public returns (bool) {
      require(_to != address(0), "Can not send to null");
      require(_value <= balances[msg.sender], "Can not send more than balance");
@@ -72,6 +72,12 @@ contract StandardToken is ERC20, ERC223 {
      balances[_to] = SafeMath.add(balances[_to], _value);
      allowed[_from][msg.sender] = SafeMath.sub(allowed[_from][msg.sender], _value);
      emit Transfer(_from, _to, _value);
+     return true;
+   }
+
+   function approve(address _spender, uint256 _value) public returns (bool) {
+     allowed[msg.sender][_spender] = _value;
+    emit Approval(msg.sender, _spender, _value);
      return true;
    }
 }
